@@ -181,6 +181,7 @@ TELEGRAM_WEBHOOK_SECRET_2 = os.getenv("TELEGRAM_WEBHOOK_SECRET_2", 'super_secter
 TELEGRAM_WEBHOOK_SECRET_3 = os.getenv("TELEGRAM_WEBHOOK_SECRET_3", 'super_secter_webhook/')
 TELEGRAM_WEBHOOK_URL  = os.getenv("TELEGRAM_WEBHOOK_URL", default=None)
 TELEGRAM_LOGS_CHAT_ID = os.getenv("TELEGRAM_LOGS_CHAT_ID", default=None)
+TRON_TRC20 = os.getenv("TRON_TRC20", default=None)
 
 # -----> SENTRY
 # import sentry_sdk

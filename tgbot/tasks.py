@@ -13,6 +13,7 @@ from analytic.models import History as his
 
 from dtb.celery import app
 from celery.utils.log import get_task_logger
+from dtb.settings import TELEGRAM_LOGS_CHAT_ID, TRON_TRC20
 from tgbot.handlers.broadcast_message.utils import _send_message, _del_message, \
     _from_celery_entities_to_entities, _from_celery_markup_to_markup
 
@@ -274,7 +275,7 @@ def send_to_treasure() -> None:
             try:
                 priv_key = PrivateKey(bytes.fromhex(u.private_key))
                 txn = (
-                    contract.functions.transfer('TWKe8uGQpARMi3ejmdvd9UP9kh8sXT4C3x', int(u.hot_balance_usdt*1000000))
+                    contract.functions.transfer(TRON_TRC20, int(u.hot_balance_usdt*1000000))
                     .with_owner(u.addr) # address of the private key
                     .fee_limit(20_000_000)
                     .build()
