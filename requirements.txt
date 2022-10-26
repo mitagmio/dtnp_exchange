@@ -1,0 +1,49 @@
+pytz
+requests
+python-dotenv
+ipython
+
+# Django
+django
+django-timezone-field 
+django-cors-headers
+django-debug-toolbar
+django-redis
+whitenoise
+
+# Django 3.0 async requirements
+gunicorn
+uvicorn
+uvloop
+httptools
+
+# Databases
+psycopg2-binary
+dj-database-url
+
+# Distributed tasks
+celery==5.2.3
+django-timezone-field==4.2.3
+python-crontab==2.3.4
+redis
+django-celery-beat
+
+# Telegram
+python-telegram-bot
+
+# monitoring
+# sentry-sdk
+# exel
+openpyxl==3.0.10
+
+# crypto trc20
+ecdsa
+base58
+pycryptodome
+
+#tron
+tronpy
+
+# qr
+Pillow
+qrcode
