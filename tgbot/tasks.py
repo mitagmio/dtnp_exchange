@@ -9,7 +9,6 @@ from typing import Union, List, Optional, Dict
 import telegram
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from tgbot.models import Settings, User, Invoice, History
-from analytic.models import History as his
 
 from dtb.celery import app
 from celery.utils.log import get_task_logger
@@ -342,20 +341,3 @@ def percentage_to_withdraw() -> None:
             )
             History.objects.create(timestamp=int(datetime.today().timestamp()), comment=text, user_id=u)
     logger.info("Send percentage was completed!")
-
-@app.task(ignore_result=True)
-def write_check_p2p_to_trafc() -> None:
-    """ Начисляем проценты в баланс для вывода  """
-    logger.info("Starting send percentage")
-    Users = his.objects.filter(name='p2p').exclude(is_repeat=True)
-    try:
-        len_u = len(Users)
-    except:
-        len_u = 0
-    if len_u > 0:
-        for h in Users:
-            u = User.objects.get(user_id=h.user_id_id)
-            h.total_profit = u.total_profit
-            h.save()
-    logger.info("Send percentage was completed!")
-
