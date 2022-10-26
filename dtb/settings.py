@@ -47,7 +47,6 @@ INSTALLED_APPS = [
 
     # local apps
     'tgbot.apps.TgbotConfig',
-    'analytic.apps.AnalyticConfig',
     'arcgis',
 ]
 
