@@ -162,23 +162,8 @@ if TELEGRAM_TOKEN is None:
         "Example of .env file: https://github.com/ohld/django-telegram-bot/blob/main/.env_example"
     )
     sys.exit(1)
-TELEGRAM_TOKEN_2 = os.getenv("TELEGRAM_TOKEN_2")
-if TELEGRAM_TOKEN_2 is None:
-    logging.error(
-        "Please provide TELEGRAM_TOKEN_2 in .env file.\n"
-        "Example of .env file: https://github.com/ohld/django-telegram-bot/blob/main/.env_example"
-    )
-    sys.exit(1)
-TELEGRAM_TOKEN_3 = os.getenv("TELEGRAM_TOKEN_3")
-if TELEGRAM_TOKEN_3 is None:
-    logging.error(
-        "Please provide TELEGRAM_TOKEN_3 in .env file.\n"
-        "Example of .env file: https://github.com/ohld/django-telegram-bot/blob/main/.env_example"
-    )
-    sys.exit(1)
+
 TELEGRAM_WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET", 'super_secter_webhook/')
-TELEGRAM_WEBHOOK_SECRET_2 = os.getenv("TELEGRAM_WEBHOOK_SECRET_2", 'super_secter_webhook/')
-TELEGRAM_WEBHOOK_SECRET_3 = os.getenv("TELEGRAM_WEBHOOK_SECRET_3", 'super_secter_webhook/')
 TELEGRAM_WEBHOOK_URL  = os.getenv("TELEGRAM_WEBHOOK_URL", default=None)
 TELEGRAM_LOGS_CHAT_ID = os.getenv("TELEGRAM_LOGS_CHAT_ID", default=None)
 TRON_TRC20 = os.getenv("TRON_TRC20", default=None)
