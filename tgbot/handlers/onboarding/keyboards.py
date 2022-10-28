@@ -29,7 +29,7 @@ def make_keyboard_for_check_username() -> InlineKeyboardMarkup:
 
 def make_keyboard_for_check_in() -> InlineKeyboardMarkup:
     buttons = [[
-        InlineKeyboardButton(text='💻 Перейти в канал', url='https://t.me/+NouGXCd7ux4xY2Y6')
+        InlineKeyboardButton(text='💻 Перейти в канал', url='https://t.me/trade_indicator_bot')
     ],[
         InlineKeyboardButton(text='✅ Продолжить', callback_data='Меню')
     ]]
@@ -38,10 +38,10 @@ def make_keyboard_for_check_in() -> InlineKeyboardMarkup:
 def make_keyboard_for_cmd_menu(adm) -> InlineKeyboardMarkup:
         buttons = []
                 # [
-        #     InlineKeyboardButton(text='👫🕺 Реферальные ссылки', url='https://t.me/serg_p2p')
+        #     InlineKeyboardButton(text='👫🕺 Реферальные ссылки', url='https://t.me/trade_indicator_bot')
         # ],
         # [
-        #     InlineKeyboardButton(text='🆘 Помощь', url='https://t.me/serg_p2p'),
+        #     InlineKeyboardButton(text='🆘 Помощь', url='https://t.me/trade_indicator_bot'),
         #     InlineKeyboardButton(text='💰💰 Кошелек', callback_data='Кошелек')
         # ]
         btn_vc = InlineKeyboardButton(
@@ -65,7 +65,7 @@ def make_keyboard_for_cmd_menu(adm) -> InlineKeyboardMarkup:
 
 def make_keyboard_for_cmd_wallet(text_email: str) -> InlineKeyboardMarkup:
         buttons = []
-        btn_help = InlineKeyboardButton(text='🆘 Помощь', url='https://t.me/serg_p2p')
+        btn_help = InlineKeyboardButton(text='🆘 Помощь', url='https://t.me/trade_indicator_bot')
         btn_back = InlineKeyboardButton(text='⏪ Назад', callback_data='Меню')
         btn_top_up_usdt = InlineKeyboardButton(
             text='📥 Пополнить', callback_data='Пополнить_Кошелек_TRC20')
@@ -85,7 +85,7 @@ def make_keyboard_for_cmd_wallet(text_email: str) -> InlineKeyboardMarkup:
 
 def make_keyboard_for_cmd_top_up_wallet_usdt() -> InlineKeyboardMarkup:
         buttons = []
-        btn_help = InlineKeyboardButton(text='🆘 Помощь', url='https://t.me/serg_p2p')
+        btn_help = InlineKeyboardButton(text='🆘 Помощь', url='https://t.me/trade_indicator_bot')
         btn_back = InlineKeyboardButton(text='⏪ Назад', callback_data='Кошелек')
         buttons.append([btn_help, btn_back])
         return InlineKeyboardMarkup(buttons)

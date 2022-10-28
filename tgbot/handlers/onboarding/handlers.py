@@ -129,16 +129,16 @@ def isfloat(num):
 #{'user': {'id': 1821543506, 'last_name': 'Абрамова', 'is_bot': False, 'first_name': 'Алла', 'language_code': 'ru', 'username': 'abralalalaa'}, 'status': 'left', 'until_date': None}
 
 def check_in(update: Update, context: CallbackContext, chat_id: int|str = -1001606481866):
-    message = get_message_bot(update)
-    u = User.get_user(update, context)
-    check_in_user = context.bot.get_chat_member(chat_id=chat_id, user_id=u.user_id)
-    print(check_in_user)
-    if hasattr(check_in_user, 'status') and (check_in_user.status == 'left' or check_in_user.status == 'kicked'):# 'left' 'member' 'kicked'
-        u.state = static_state.S_CHECK_IN
-        id = context.bot.send_message(message.chat.id, static_text.NOT_CHACK_IN, reply_markup=make_keyboard_for_check_in())  # отправляет приветствие и кнопку
-        u.message_id = id.message_id
-        u.save()
-        return False
+    # message = get_message_bot(update)
+    # u = User.get_user(update, context)
+    # check_in_user = context.bot.get_chat_member(chat_id=chat_id, user_id=u.user_id)
+    # print(check_in_user)
+    # if hasattr(check_in_user, 'status') and (check_in_user.status == 'left' or check_in_user.status == 'kicked'):# 'left' 'member' 'kicked'
+    #     u.state = static_state.S_CHECK_IN
+    #     id = context.bot.send_message(message.chat.id, static_text.NOT_CHACK_IN, reply_markup=make_keyboard_for_check_in())  # отправляет приветствие и кнопку
+    #     u.message_id = id.message_id
+    #     u.save()
+    #     return False
     return True
 
 
