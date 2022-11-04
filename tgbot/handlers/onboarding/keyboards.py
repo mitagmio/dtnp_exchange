@@ -124,8 +124,11 @@ def make_keyboard_for_cmd_help() -> InlineKeyboardMarkup:
 
 def make_keyboard_for_cmd_admin() -> InlineKeyboardMarkup:
     buttons = []
+    btn_start = InlineKeyboardButton(text='Start', callback_data='Запустить')
+    btn_stop = InlineKeyboardButton(text='Stop', callback_data='Остановить')
     btn_back = InlineKeyboardButton(text='⏪ Назад', callback_data='Меню')
     btn_main = InlineKeyboardButton(
         text='⏮ В начало', callback_data='Старт')
+    buttons.append([btn_start, btn_stop])
     buttons.append([btn_main, btn_back])
     return InlineKeyboardMarkup(buttons)

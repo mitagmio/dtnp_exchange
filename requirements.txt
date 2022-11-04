@@ -47,3 +47,6 @@ tronpy
 # qr
 Pillow
 qrcode
+
+# pybit
+pybit

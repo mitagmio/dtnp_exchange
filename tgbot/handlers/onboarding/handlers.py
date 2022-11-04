@@ -11,6 +11,9 @@ from tgbot.handlers.utils.info import extract_user_data_from_update, generate_qr
 from tgbot.models import User, History
 from tgbot.handlers.onboarding.keyboards import *
 
+import threading
+import tgbot.bybit as bybit_trader
+
 # Отслеживаем вход в группу и назначаем рефералом в случае приглашения нового пользователя.
 
 
@@ -482,8 +485,7 @@ def cmd_admin(update: Update, context: CallbackContext):
     u = User.get_user(update, context)
     if u.is_admin:
         message = get_message_bot(update)
-        id = context.bot.send_message(message.chat.id, static_text.ADMIN_MENU_TEXT.format(
-            context.bot.get_chat_member(chat_id=-1001793015412, user_id=u.user_id)), reply_markup=make_keyboard_for_cmd_admin(), parse_mode="HTML")
+        id = context.bot.send_message(message.chat.id, static_text.ADMIN_MENU_TEXT.format(''), reply_markup=make_keyboard_for_cmd_admin(), parse_mode="HTML")
         u.message_id = id.message_id
         u.save()
         del_mes(update, context, True)
@@ -494,6 +496,27 @@ def cmd_admin(update: Update, context: CallbackContext):
 def cmd_pass():
     pass
 
+def cmd_bot_start(update: Update, context: CallbackContext):
+    u = User.get_user(update, context)
+    message = get_message_bot(update)
+    bot_thread = StoppableThread(target=binance_trade_bot.run_trader, name=bot_thread_name)
+    bot_thread.start()
+    id = context.bot.send_message(
+        message.chat.id, 'Запущен',
+        reply_markup=make_keyboard_for_cmd_admin(), parse_mode="HTML", disable_web_page_preview=True)
+    u.message_id = id.message_id
+    u.save()
+    del_mes(update, context, True)
+
+def cmd_bot_stop(update: Update, context: CallbackContext):
+    u = User.get_user(update, context)
+    message = get_message_bot(update)
+    id = context.bot.send_message(
+        message.chat.id, 'Остановлен',
+        reply_markup=make_keyboard_for_cmd_admin(), parse_mode="HTML", disable_web_page_preview=True)
+    u.message_id = id.message_id
+    u.save()
+    del_mes(update, context, True)
 
 # словарь функций Меню по состоянию
 State_Dict = {
@@ -525,6 +548,8 @@ Menu_Dict = {
     'Администрирование': cmd_admin,
     'pass': cmd_pass,
     'Help': cmd_help,
+    'Запустить': cmd_bot_start,
+    'Остановить': cmd_bot_stop,
 }
 
 
@@ -544,3 +569,24 @@ def secret_level(update: Update, context: CallbackContext) -> None:
         message_id=update.callback_query.message.message_id,
         parse_mode=ParseMode.HTML
     )
+
+def find_and_stop_thread(self, thread_name):
+    all_threads = threading.enumerate()
+    for thread in all_threads:
+        if thread.name == thread_name:
+            thread.stop()
+            thread.join()
+
+class StoppableThread(threading.Thread):
+    """Thread class with a stop() method. The thread itself has to check
+    regularly for the stopped() condition."""
+
+    def __init__(self, *args, **kwargs):
+        super(StoppableThread, self).__init__(*args, **kwargs)
+        self._stop_event = threading.Event()
+
+    def stop(self):
+        self._stop_event.set()
+
+    def stopped(self):
+        return self._stop_event.is_set()
