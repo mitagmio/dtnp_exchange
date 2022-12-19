@@ -11,8 +11,8 @@ from tgbot.handlers.utils.info import extract_user_data_from_update, generate_qr
 from tgbot.models import User, History
 from tgbot.handlers.onboarding.keyboards import *
 
-import threading
-import tgbot.bybit as bybit_trader
+# import threading
+# import tgbot.bybit as bybit_trader
 
 # Отслеживаем вход в группу и назначаем рефералом в случае приглашения нового пользователя.
 
@@ -570,23 +570,23 @@ def secret_level(update: Update, context: CallbackContext) -> None:
         parse_mode=ParseMode.HTML
     )
 
-def find_and_stop_thread(self, thread_name):
-    all_threads = threading.enumerate()
-    for thread in all_threads:
-        if thread.name == thread_name:
-            thread.stop()
-            thread.join()
+# def find_and_stop_thread(self, thread_name):
+#     all_threads = threading.enumerate()
+#     for thread in all_threads:
+#         if thread.name == thread_name:
+#             thread.stop()
+#             thread.join()
 
-class StoppableThread(threading.Thread):
-    """Thread class with a stop() method. The thread itself has to check
-    regularly for the stopped() condition."""
+# class StoppableThread(threading.Thread):
+#     """Thread class with a stop() method. The thread itself has to check
+#     regularly for the stopped() condition."""
 
-    def __init__(self, *args, **kwargs):
-        super(StoppableThread, self).__init__(*args, **kwargs)
-        self._stop_event = threading.Event()
+#     def __init__(self, *args, **kwargs):
+#         super(StoppableThread, self).__init__(*args, **kwargs)
+#         self._stop_event = threading.Event()
 
-    def stop(self):
-        self._stop_event.set()
+#     def stop(self):
+#         self._stop_event.set()
 
-    def stopped(self):
-        return self._stop_event.is_set()
+#     def stopped(self):
+#         return self._stop_event.is_set()
